@@ -55,7 +55,7 @@ const LoginForm = () => {
       checkError();
     } else {
       setErr("");
-      fetch("http://192.168.1.30:3111/api/login", {
+      fetch("http://localhost:3111/api/login", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -67,7 +67,6 @@ const LoginForm = () => {
         .then((data) => {
           console.log(data);
           setLogin(loginObj);
-          alert("Your data have been saved");
         });
     }
   };
