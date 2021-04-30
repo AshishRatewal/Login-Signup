@@ -92,7 +92,7 @@ const LoginForm = () => {
       console.log("Congress:  ", inputs);
       alert("running...");
       axios
-        .post("http://localhost:3111/api/register", {
+        .post("http://localhost:4000/api/register", {
           name: inputs.name,
           email: inputs.email,
           phone: inputs.phone,

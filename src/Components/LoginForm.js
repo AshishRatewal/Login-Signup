@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 const LoginForm = () => {
   const loginObj = {
@@ -41,7 +42,7 @@ const LoginForm = () => {
     setErr(errorObject);
   };
 
-  let checkLogin = (e) => {
+   let checkLogin = (e) => {
     e.preventDefault();
     if (
       !err.email == "" ||
@@ -55,17 +56,17 @@ const LoginForm = () => {
       checkError();
     } else {
       setErr("");
-      fetch("http://localhost:3111/api/login", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(login),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
+      axios
+        .post("http://localhost:4000/api/login", {
+          email: login.email,
+          password: login.password,
+        })
+        .then((response) => {
+          console.log("response: ", response);
+          setLogin(loginObj);
+        })
+        .catch((err) => {
+          alert("Error" + err.message);
           setLogin(loginObj);
         });
     }
